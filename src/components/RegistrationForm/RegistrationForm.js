@@ -8,7 +8,6 @@ function RegistrationForm(props) {
     const [state , setState] = useState({
         email : "",
         username: "",
-        phone: "",
         password : "",
         confirmPassword: "",
         successMessage: null
@@ -26,7 +25,6 @@ function RegistrationForm(props) {
             const payload={
                 "email":state.email,
                 "username":state.username,
-                "phone":state.phone,
                 "password":state.password,
                 "password_confirmation":state.confirmPassword
             }
@@ -89,16 +87,6 @@ function RegistrationForm(props) {
                     id="username"
                     placeholder="Enter username"
                     value={state.username}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group text-left">
-                  <label htmlFor="exampleInputUsername1">Phone</label>
-                  <input type="phone"
-                    className="form-control"
-                    id="phone"
-                    placeholder="Enter phone number"
-                    value={state.phone}
                     onChange={handleChange}
                   />
                 </div>
