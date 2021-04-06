@@ -11,25 +11,10 @@ function Header(props) {
     if(props.location.pathname === '/') {
         title = 'Welcome'
     }
-    function renderLogout() {
-        if(props.location.pathname === '/home'){
-            return(
-                <div className="ml-auto">
-                    <button className="btn btn-danger" onClick={() => handleLogout()}>Logout</button>
-                </div>
-            )
-        }
-    }
-    function handleLogout() {
-    	  axios({method: 'post', url: API_BASE_URL + '/api/v1/users/logout', headers: { 'Authorization': localStorage.getItem(ACCESS_TOKEN_NAME) }})
-        localStorage.removeItem(ACCESS_TOKEN_NAME)
-        props.history.push('/login')
-    }
     return(
         <nav className="navbar navbar-dark bg-primary">
             <div className="row col-12 d-flex justify-content-center text-white">
                 <span className="h3">{props.title || title}</span>
-                {renderLogout()}
             </div>
         </nav>
     )
