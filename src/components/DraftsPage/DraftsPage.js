@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import UserService from "../../services/user.service";
 import DraftInfoTable from "../DraftInfoTable/DraftInfoTable"
+import { Redirect } from 'react-router'
 
-function DraftsPage() {
+function DraftsPage(props) {
   const [state , setState] = useState({active: [], inactive: [], pending: []})
   useEffect(() => {
     UserService.drafts().then((response) => {
       console.log(response.data)
       setState(response.data)
-    });
+    }).catch((error) => {
+      setState({redirect: true});
+    })
   }, []);
 
   function renderActive() {
@@ -49,6 +52,9 @@ function DraftsPage() {
     }
   }
 
+  if (state.redirect) {
+    return <Redirect to="/login" />
+  }
   return (
     <div className="container" style={{ width: "600px" }}>
       <div style={{ margin: "20px" }}>

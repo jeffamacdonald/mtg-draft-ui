@@ -29,7 +29,7 @@ function RegistrationForm(props) {
                             'successMessage' : 'Registration successful. Redirecting to home page..'
                         }))
                         localStorage.setItem('authorization',response.headers.authorization);
-                        redirectToHome();
+                        redirectToMyDrafts();
                         props.showError(null)
                     } else{
                         props.showError("Some error ocurred");
@@ -43,9 +43,9 @@ function RegistrationForm(props) {
         }
 
     }
-    const redirectToHome = () => {
-        props.updateTitle('Home')
-        props.history.push('/home');
+    const redirectToMyDrafts = () => {
+        props.updateTitle('My Drafts')
+        props.history.push('/mydrafts');
     }
     const redirectToLogin = () => {
         props.updateTitle('Login')

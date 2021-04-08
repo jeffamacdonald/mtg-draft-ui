@@ -27,7 +27,7 @@ function LoginForm(props) {
                         'successMessage' : 'Login successful. Redirecting to home page..'
                     }))
                     localStorage.setItem('authorization',response.headers.authorization);
-                    redirectToHome();
+                    redirectToMyDrafts();
                     props.showError(null)
                 }
                 else if(response.code === 204){
@@ -42,9 +42,9 @@ function LoginForm(props) {
                 console.log(error);
             });
     }
-    const redirectToHome = () => {
-        props.updateTitle('Home')
-        props.history.push('/home');
+    const redirectToMyDrafts = () => {
+        props.updateTitle('My Drafts')
+        props.history.push('/mydrafts');
     }
     const redirectToRegister = () => {
         props.history.push('/register');
