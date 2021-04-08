@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from './components/Navigation/Navigation';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
+import ImportCubePage from './components/ImportCubePage/ImportCubePage';
 import Home from './components/Home/Home';
 import PrivateRoute from './utils/PrivateRoute';
 import {
@@ -28,6 +30,9 @@ function App() {
             </Route>
             <Route path="/login">
               <LoginForm showError={updateErrorMessage} updateTitle={updateTitle}/>
+            </Route>
+            <Route path="/importcube">
+              <ImportCubePage />
             </Route>
             <PrivateRoute path="/home">
               <Home/>
