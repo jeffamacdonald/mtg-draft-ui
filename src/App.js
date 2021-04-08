@@ -5,6 +5,10 @@ import Navigation from './components/Navigation/Navigation';
 import LoginForm from './components/LoginForm/LoginForm';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import ImportCubePage from './components/ImportCubePage/ImportCubePage';
+import DraftsPage from './components/DraftsPage/DraftsPage';
+import CubesPage from './components/CubesPage/CubesPage';
+import JoinDraftPage from './components/JoinDraftPage/JoinDraftPage';
+import CreateDraftPage from './components/CreateDraftPage/CreateDraftPage';
 import Home from './components/Home/Home';
 import PrivateRoute from './utils/PrivateRoute';
 import {
@@ -33,6 +37,18 @@ function App() {
             </Route>
             <Route path="/importcube">
               <ImportCubePage />
+            </Route>
+            <Route path="/mydrafts">
+              <DraftsPage />
+            </Route>
+            <Route path="/mycubes">
+              <CubesPage />
+            </Route>
+            <Route path="/joindraft">
+              <JoinDraftPage />
+            </Route>
+            <Route path="/createdraft">
+              <CreateDraftPage />
             </Route>
             <PrivateRoute path="/home">
               <Home/>
