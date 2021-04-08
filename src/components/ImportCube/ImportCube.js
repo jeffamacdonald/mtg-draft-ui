@@ -58,7 +58,6 @@ export default class ImportCube extends Component {
   render() {
     const {
       selectedFile,
-      cubeName,
       progress,
       message,
     } = this.state;

@@ -1,10 +1,9 @@
 import React from 'react';
-import axios from 'axios';
+import SessionService from "../../services/session.service";
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { withRouter } from "react-router-dom";
-import { API_BASE_URL, ACCESS_TOKEN_NAME } from '../../constants/apiConstants';
 function Navigation(props) {
   const capitalize = (s) => {
     if (typeof s !== 'string') return ''
@@ -24,8 +23,8 @@ function Navigation(props) {
     }
   }
   function handleLogout() {
-	  axios({method: 'post', url: API_BASE_URL + '/api/v1/users/logout', headers: { 'Authorization': localStorage.getItem(ACCESS_TOKEN_NAME) }})
-    localStorage.removeItem(ACCESS_TOKEN_NAME)
+	  SessionService.logout();
+    localStorage.removeItem('authorization')
     props.history.push('/login')
   }
   function renderNav() {

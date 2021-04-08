@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import axios from 'axios';
 import './RegistrationForm.css';
-import {API_BASE_URL, ACCESS_TOKEN_NAME} from '../../constants/apiConstants';
 import { withRouter } from "react-router-dom";
+import RegistrationService from "../../services/registration.service";
 
 function RegistrationForm(props) {
     const [state , setState] = useState({
@@ -22,20 +21,14 @@ function RegistrationForm(props) {
     const sendDetailsToServer = () => {
         if(state.email.length && state.password.length && state.username.length) {
             props.showError(null);
-            const payload={
-                "email":state.email,
-                "username":state.username,
-                "password":state.password,
-                "password_confirmation":state.confirmPassword
-            }
-            axios.post(API_BASE_URL+'/api/v1/users/register', payload)
+            RegistrationService.register(state.email, state.username, state.password, state.confirmPassword)
                 .then(function (response) {
                     if(response.status === 201){
                         setState(prevState => ({
                             ...prevState,
                             'successMessage' : 'Registration successful. Redirecting to home page..'
                         }))
-                        localStorage.setItem(ACCESS_TOKEN_NAME,response.headers.authorization);
+                        localStorage.setItem('authorization',response.headers.authorization);
                         redirectToHome();
                         props.showError(null)
                     } else{

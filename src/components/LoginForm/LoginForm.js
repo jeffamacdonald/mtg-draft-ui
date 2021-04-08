@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import axios from 'axios';
+import SessionService from "../../services/session.service";
 import './LoginForm.css';
-import {API_BASE_URL, ACCESS_TOKEN_NAME} from '../../constants/apiConstants';
 import { withRouter } from "react-router-dom";
 
 function LoginForm(props) {
@@ -20,18 +19,14 @@ function LoginForm(props) {
 
     const handleSubmitClick = (e) => {
         e.preventDefault();
-        const payload={
-            "email":state.email,
-            "password":state.password,
-        }
-        axios.post(API_BASE_URL+'/api/v1/users/login', payload)
+        SessionService.login(state.email, state.password)
             .then(function (response) {
                 if(response.status === 200){
                     setState(prevState => ({
                         ...prevState,
                         'successMessage' : 'Login successful. Redirecting to home page..'
                     }))
-                    localStorage.setItem(ACCESS_TOKEN_NAME,response.headers.authorization);
+                    localStorage.setItem('authorization',response.headers.authorization);
                     redirectToHome();
                     props.showError(null)
                 }
